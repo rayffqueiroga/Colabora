@@ -1,0 +1,125 @@
+@(disciplinas: List[Disciplina], dia:String)
+				
+@for(disciplina <- disciplinas) {
+	<div class="panel panel-primary redips-drag" style="margin-bottom:4px">
+		<div class="panel-heading">
+			<h4 class="panel-title text-center">
+				<a data-toggle="collapse" data-parent="#accordion"
+					href="#@disciplina.retornaIDUnico(dia)">@disciplina.getAbreviatura()</a>
+			</h4>
+		</div>
+	
+		<div id="@disciplina.retornaIDUnico(dia)" class="panel-collapse collapse">
+			<div class="panel-body">
+				Disciplina: @disciplina.getNome()<br> Sala: @disciplina.getSala() <br> Professor: @disciplina.getProfessor()
+			</div>
+	
+			<div class="panel-body2">
+				<center>
+				<form action="@routes.SistemaCoordenadorController.removeDisciplinaDoHorario(disciplina.getId())" method="post"> 
+					<button type="button" class="btn btn-primary btn-circle"
+						data-toggle="modal" data-target="#@disciplina.getId()">
+						<i class="glyphicon glyphicon-edit"></i>
+					</button>
+					
+						<button type="submit" class="btn btn-primary btn-circle">
+							<i class="glyphicon glyphicon-remove"></i>
+						</button>
+				</form>
+				</center>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal -->
+<div class="modal fade" id="@disciplina.getId()" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Editar disciplina -
+					@disciplina.getNome()</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" method="post"
+					action="@routes.SistemaCoordenadorController.salvarAlteracao(disciplina.getId())">
+					
+					<div class="control-group">
+						<label class="control-label" for="textinput">C&oacute;digo</label>
+						<div class="controls">
+							<input id="codigo" class="form-control" name="codigo" type="text"
+								value="@disciplina.getCodigo()" style='width: 400px;'>
+
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="control-group">
+						<label class="control-label" for="textinput">Nome</label>
+						<div class="controls">
+							<input id="textinput" class="form-control" name="nome"
+								type="text" value="@disciplina.getNome()" style='width: 400px;'>
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+
+					<div class="control-group">
+						<label class="control-label" for="textinput">Cr&eacute;ditos</label>
+						<div class="controls">
+							<input id="textinput" class="form-control" name="creditos"
+								type="text" value="@disciplina.getCreditos()"
+								style='width: 400px;'>
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="control-group">
+						<label class="control-label" for="textinput">Professor</label>
+						<div class="controls">
+							<input id="textinput" class="form-control" name="professor"
+								type="text" value="@disciplina.getProfessor()"
+								style='width: 400px;'>
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="control-group">
+						<label class="control-label" for="textinput">Abreviatura</label>
+						<div class="controls">
+							<input id="textinput" class="form-control" name="abreviatura"
+								type="text" value="@disciplina.getAbreviatura()"
+								style='width: 400px;'>
+
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="textinput">Sala</label>
+						<div class="controls">
+							<input id="textinput" class="form-control" name="sala"
+								type="text" value="@disciplina.getSala()" style='width: 400px;'>
+
+						</div>
+					</div>
+			<br>
+				<div class="control-group">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+			</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+}
+
+

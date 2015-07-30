@@ -1,0 +1,81 @@
+@(disciplinas: List[Disciplina], dia:String)
+				
+@for(disciplina <- disciplinas) {
+	<div class="panel panel-primary" style="margin-bottom:4px">
+		<div class="panel-heading">
+			<h4 class="panel-title text-center">
+				<a data-toggle="collapse" data-parent="#accordion"
+					href="#@disciplina.retornaIDUnico(dia)">@disciplina.getAbreviatura()</a>
+			</h4>
+		</div>
+	
+		<div id="@disciplina.retornaIDUnico(dia)" class="panel-collapse collapse">
+			<div class="panel-body">
+				Disciplina: @disciplina.getNome()<br> Sala: @disciplina.getSala() <br> Professor: @disciplina.getProfessor()
+			</div>
+	
+			<div class="panel-body2">
+				<center>
+				<form action="@routes.SistemaCoordenadorController.removeDisciplinaDoHorario(disciplina.getId())" method="post"> 
+					<button type="button" class="btn btn-primary btn-circle"
+						data-toggle="modal" data-target="#@disciplina.getId()">
+						<i class="glyphicon glyphicon-warning-sign"></i>
+					</button>
+					
+				</form>
+				</center>
+			</div>
+			
+		</div>
+	</div>
+	
+		<!-- Modal -->
+<div class="modal fade" id="@disciplina.getId()" tabindex="-1"
+	role="dialog" aria-labelledby="myModalLabel" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Indicar problema com a disciplina -
+					@disciplina.getNome()</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" method="post"	>
+				
+					<div class="control-group">
+						<label class="control-label" for="checkboxes-0"></label>
+							 <input type="checkbox" name="checkboxes" id="checkboxes-0" value="Choque de horário">
+								Choque de horário
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="checkboxes-1"></label>
+							<input type="checkbox" name="checkboxes" id="checkboxes-1" value="Choque de horário">
+							Não possuo esse horário livre
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="checkboxes-2"></label>
+							 <input type="checkbox" name="checkboxes" id="checkboxes-2" value="Choque de horário">
+						   Gostaria de pagá-la em paralelo com uma pré-requisito
+					</div>
+					<br>
+					<!-- Text input-->
+					<div class="control-group">
+					  <label class="control-label">Outro problema</label>
+						<input id="outroProblema" name="outroProblema" type="text" placeholder="Digite o problema" class="input-large">
+					</div>					
+				<br>
+					<div class="control-group">
+						<button type="submit" class="btn btn-primary">Enviar</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+					</div>
+			</div>
+			</form>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+}
+
+

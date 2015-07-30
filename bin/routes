@@ -1,0 +1,43 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET       	/                    		controllers.Application.login()
+POST      	/		                 	controllers.Application.login()
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file        		controllers.Assets.versioned(path="/public", file)
+GET        /assets/*file        		controllers.Assets.at(path="/public", file)
+
+# Contato
+GET     	/contato                    controllers.Application.contato()
+
+# Horário
+POST    	/horario               		controllers.SistemaCoordenadorController.sistemaCoordenador()
+GET    		/horario               		controllers.SistemaCoordenadorController.sistemaCoordenador()
+
+GET			/horarioAluno				controllers.Application.sistemaAluno(email:String)
+
+#Criar nova disciplina
+GET			/novaDisciplina				controllers.SistemaCoordenadorController.novaDisciplina()
+POST		/novaDisciplina				controllers.SistemaCoordenadorController.criaDisciplina()
+
+#Lista disciplinas
+GET			/listDisciplinas			controllers.SistemaCoordenadorController.listaDeDisciplinas()
+POST		/adicionaDisciplina			controllers.SistemaCoordenadorController.adicionaDiscipliNoHorario(id:Long)
+
+#Editar dados da disciplina e remover a disciplina do horario
+POST    	/disciplinas/update 		controllers.SistemaCoordenadorController.salvarAlteracao(id:Long)
+POST    	/disciplinas/remove 		controllers.SistemaCoordenadorController.removeDisciplinaDoHorario(id:Long)
+
+#Usuario indicar intenção de matricula
+POST    	/indicarmatricula 			controllers.SistemaAlunoController.indicarIntencaoDeMatricula(id:Long)
+GET			/indicarmatricula			controllers.SistemaAlunoController.irParaTelaDeIntencaoDeMatricula()
+
+#Usuario
+GET     	/alterarSenha               controllers.Application.alterarSenha()
+POST     	/alterarSenha               controllers.Application.alterarSenha()
+POST     	/recuperaSenha              controllers.Application.recuperaSenha()
+GET     	/recuperaSenha              controllers.Application.recuperaSenha()
